@@ -5,14 +5,14 @@
     $update=false;
     $id=0;
     $t_name= '';
-    $t_status= '';
+    $t_result= '';
 
     if(isset($_POST['add']))
     {
         $t_name= ucwords($_POST['t_name']);
-        $t_status= $_POST['t_status'];
+        $t_result= $_POST['t_result'];
 
-        $query="INSERT INTO `labtest`(`t_name`, `t_result`) VALUES ('$t_name','$t_status')";
+        $query="INSERT INTO `labtest`(`t_name`, `t_result`) VALUES ('$t_name','$t_result')";
         $run =mysqli_query($con,$query);
 
         $_SESSION['message']="Record has been saved";
@@ -38,8 +38,9 @@
         $result=$con->query("select * from labtest where t_id=$t_id") or die($con->error());
         if($result){
             $row=$result->fetch_array();
+            $id=$row['t_id'];
             $t_name= $row['t_name'];
-            $t_status= $row['t_status'];
+            $t_result= $row['t_result'];
         }
     }
 
@@ -47,9 +48,9 @@
     {
         $id=$_POST['id'];
         $t_name= ($_POST['t_name']);
-        $t_status= ($_POST['t_status']);
+        $t_result= ($_POST['t_result']);
 
-        $con->query("update labtest set t_name='$t_name',t_status='$t_status'") or die($con->error());
+        $con->query("update labtest set t_name='$t_name',t_result='$t_result' where t_id='$id'") or die($con->error());
         $_SESSION['message']="Record has been updated";
         $_SESSION['msg_type']="warning";
 

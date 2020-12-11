@@ -5,29 +5,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 </head>
 <body>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Brand</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="dbms_index.php">Registration<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="dbms_tests.php">Tests</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="dbms_doctor.php">Doctors</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="dbms_billing.php">Billing</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+<?php require 'config.php' ?>
 
 <?php require_once 'test.php';?>
 <?php
@@ -63,9 +41,9 @@
     </div>
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="inputEmail4">Test status</label>
-        <select id="inputState" name="t_status" class="form-control" required>
-          <option value=<?php echo $t_status; ?>>Choose...</option>
+        <label for="inputEmail4">Test result</label>
+        <select id="inputState" name="t_result" class="form-control" required>
+          <option value=<?php echo $t_result; ?>>Choose...</option>
           <option value="Positive">Positive</option>
           <option value="Negative">Negative</option>
           <option value="Normal">Normal</option>
@@ -95,7 +73,7 @@
       <tr>
         <th scope="col">Test ID</th>
         <th scope="col">Test Name</th>
-        <!-- <th scope="col">Patient id</th> -->
+        <th scope="col">Test Result</th>
         <th scope="col">Test date</th>
         <th scope="col">Action</th>
       </tr>
@@ -110,10 +88,10 @@
       <tr>
         <td><?php echo $row['t_id']; ?></td>
         <td><?php echo $row['t_name']; ?></td>
-        <!-- <td><?php //echo $row['p_id']; ?></td> -->
+        <td><?php echo $row['t_result']; ?></td>
         <td><?php echo $row['t_date']; ?></td>
         <td>
-          <a href="dbms_test.php?edit=<?php echo $row['t_id'];?>" class="btn btn-info">Edit</a>
+          <a href="dbms_tests.php?edit=<?php echo $row['t_id'];?>" class="btn btn-info">Edit</a>
           <a href="test.php?delete=<?php echo $row['t_id'];?>" class="btn btn-danger">Delete</a>
         </td>
       </tr>

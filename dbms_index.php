@@ -6,27 +6,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 </head>
 <body>
-  <!-- <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="dbms_index.php">Registration<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="dbms_tests.php">Tests</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="dbms_doctor.php">Doctors</a>
-      </li>
-      <li class="nav-item mr-5">
-        <a class="nav-link" href="dbms_billing.php">Billing</a>
-      </li>
-      <ul class="navbar-nav my-lg-0 mr-3">
-            <li class="nav-item">Hi <?php //echo ucwords($_SESSION['user']);?></li>
-            <li><a class="nav-link" href="logout.php">Logout</a></li>
-      </ul> -->
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Apollo</a>
+  <a class="navbar-brand" href="#">Cure</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -69,7 +50,8 @@
 <div class="container col-5 mt-5">
   <form action="register.php" method="post">
   <input type="hidden" name="id" value="<?php echo $id; ?>">
-
+  
+    <?php //echo $id; ?>
     <div class="form-row">
       <div class="form-group">
       <?php 
@@ -110,6 +92,7 @@
       <label for="inputAddress">Address</label>
       <input type="text" max="50" name="p_address" required class="form-control" id="inputAddress" placeholder="Eg: 1234 Main St" value="<?php echo $p_address; ?>">
     </div>
+
     <?php if ($update):    ?>
     <button type="submit" name="update" class="btn btn-warning">Update</button>
     <?php else:?>
@@ -123,14 +106,6 @@
 <?php 
   $con = new mysqli('localhost','root','','patientdb') or die(mysqli_error($con));
   $result=$con->query("select * from patientdata") or die($con->error);
- 
-  // $result->fetch_assoc();
-  // pre($result->fetch_assoc());
-//   function pre($array){
-//     echo '<pre>';
-//     print_r($array);
-//     echo '</pre';
-//    }
 ?>
 
 

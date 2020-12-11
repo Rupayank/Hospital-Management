@@ -38,8 +38,8 @@
         $result=$con->query("select * from doctordata where d_id=$d_id") or die($con->error());
         if($result){
             $row=$result->fetch_array();
+            $id=$row['d_id'];
             $d_name= $row['d_name'];
-            echo $d_name;
             $d_spcl= $row['d_spcl'];
         }
     }
@@ -47,10 +47,10 @@
     if(isset($_POST['update']))
     {
         $id=$_POST['id'];
-        $d_name= ($_POST['d_name']);
-        $d_spcl= ($_POST['d_spcl']);
+        $d_name= ucwords($_POST['d_name']);
+        $d_spcl= ucwords($_POST['d_spcl']);
 
-        $con->query("update doctordata set d_name='$d_name',d_spcl='$d_spcl'") or die($con->error());
+        $con->query("update doctordata set d_name='$d_name',d_spcl='$d_spcl' where d_id='$id'") or die($con->error());
         $_SESSION['message']="Record has been updated";
         $_SESSION['msg_type']="warning";
 

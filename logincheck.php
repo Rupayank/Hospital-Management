@@ -1,10 +1,6 @@
 <?php
 session_start();
 $con=mysqli_connect('localhost','root','','patientdb');
-// if($con)
-//     echo "Connected";
-// else
-//     echo "Error";
 if(isset($_POST['submit']))
 {
     $empname=$_POST['user'];
@@ -13,12 +9,12 @@ if(isset($_POST['submit']))
     $run=mysqli_query($con,$query);
     $row=mysqli_num_rows($run);
     if($row==1){
-        echo "Successfully signed in";
         $_SESSION['user']=$empname;
         header('location: dbms_index.php');
     }
     else{
-        echo "Invalid username or password";
+        $_SESSION['message']="Invalid username or password";
+        $_SESSION['msg_type']="danger";
         header('location: login.php');
     }
 }

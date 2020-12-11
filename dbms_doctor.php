@@ -6,30 +6,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Brand</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="dbms_index.php">Registration<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="dbms_tests.php">Tests</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="dbms_doctor.php">Doctors</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="dbms_billing.php">Billing</a>
-      </li>
-      </li>
-    </ul>
-  </div>
-</nav>
-
+<?php require 'config.php' ?>
 <?php require_once 'doctor.php';?>
 <?php
   if(isset($_SESSION['message'])):  ?>
@@ -41,6 +18,8 @@
     ?>
   </div>
 <?php endif ?>
+
+
 <div class="container col-6 mt-5">
   <form action="Doctor.php" method="post">
   <input type="hidden" name="id" value="<?php echo $id; ?>">
@@ -87,8 +66,6 @@
         <th scope="col">Doctor ID</th>
         <th scope="col">Doctor Name</th>
         <th scope="col">Specialisation</th>
-        <!-- <th scope="col">Patient id</th> -->
-        <!-- <th scope="col">Doctor date</th> -->
         <th scope="col">Action</th>
       </tr>
     </thead>
@@ -102,7 +79,6 @@
       <tr>
         <td><?php echo $row['d_id']; ?></td>
         <td><?php echo $row['d_name']; ?></td>
-        <!-- <td><?php //echo $row['p_id']; ?></td> -->
         <td><?php echo $row['d_spcl']; ?></td>
         <td>
           <a href="dbms_doctor.php?edit=<?php echo $row['d_id'];?>" class="btn btn-info">Edit</a>

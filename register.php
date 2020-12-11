@@ -27,16 +27,6 @@
 
         header("location: dbms_index.php");
     }
-    
-    if(isset($_GET['delete'])){
-        $pid=$_GET['delete'];
-        $con->query("delete from patientdata where pid=$pid") or die($con->error());
-        
-        $_SESSION['message']="Record has been deleted";
-        $_SESSION['msg_type']="danger";
-
-        header("location: dbms_index.php");
-    }
 
     if(isset($_GET['edit']))
     {
@@ -45,6 +35,7 @@
         $result=$con->query("select * from patientdata where pid=$pid") or die($con->error());
         if($result){
             $row=$result->fetch_array();
+            $id=$row['pid'];
             $pname= $row['name'];
             $contact= $row['contact'];
             $pgender= $row['gender'];
@@ -56,17 +47,28 @@
     if(isset($_POST['update']))
     {
         $id=$_POST['id'];
+        echo $id;
         $pname= ucwords($_POST['pname']);
         $contact= $_POST['contact'];
-        $pgender= ucwords($_POST['pgender']);
-        $p_age= ($_POST['p_age']);
-        $p_address= ucwords($_POST['p_address']);
+        $pgender= $_POST['pgender'];
+        $p_age= $_POST['p_age'];
+        $p_address= $_POST['p_address'];
 
-        $con->query("update patientdata set name='$pname', contact='$contact', gender='$pgender', age='$p_age', address='$p_address'") or die($con->error());
+        $query2="UPDATE `patientdata` SET `name`='$pname',`contact`='$contact',`gender`='$pgender',`age`='$p_age',`address`='$p_address' WHERE `pid`=$id ";
+        mysqli_query($con,$query2);
         $_SESSION['message']="Record has been updated";
         $_SESSION['msg_type']="warning";
 
         header("location: dbms_index.php");
+    }
+    if(isset($_GET['delete']))
+    {
+        $pid=$_GET['delete'];
+        $con->query("delete from patientdata where pid=$pid") or die($con->error());
+        
+        $_SESSION['message']="Record has been deleted";
+        $_SESSION['msg_type']="danger";
 
+        header("location: dbms_index.php");
     }
 ?>
