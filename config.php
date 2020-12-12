@@ -14,9 +14,9 @@
       <li class="nav-item">
         <a class="nav-link" href="dbms_doctor.php">Doctors</a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" href="dbms_billing.php">Billing</a>
-      </li>
+      </li> -->
     </ul>
   </div>
 </nav>

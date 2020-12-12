@@ -57,4 +57,14 @@
         header("location: dbms_tests.php");
 
     }
+    if(isset($_POST['cancel']))
+    {
+        $id=0;
+        $t_name="";
+        $t_result= "";
+        $_SESSION['message']="Update canceled";
+        $_SESSION['msg_type']="dark";
+
+        header("location: dbms_tests.php");
+    }
 ?>

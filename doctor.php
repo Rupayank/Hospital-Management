@@ -57,4 +57,14 @@
         header("location: dbms_doctor.php");
 
     }
+    if(isset($_POST['cancel']))
+    {
+        $id=0;
+        $d_name="";
+        $d_spcl= "";
+        $_SESSION['message']="Update canceled";
+        $_SESSION['msg_type']="dark";
+
+        header("location: dbms_doctor.php");
+    }
 ?>

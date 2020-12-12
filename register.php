@@ -61,6 +61,19 @@
 
         header("location: dbms_index.php");
     }
+    if(isset($_POST['cancel']))
+    {
+        $id=0;
+        $pname="";
+        $contact= "";
+        $pgender= "";
+        $p_age= "";
+        $p_address= "";
+        $_SESSION['message']="Update canceled";
+        $_SESSION['msg_type']="dark";
+
+        header("location: dbms_index.php");
+    }
     if(isset($_GET['delete']))
     {
         $pid=$_GET['delete'];

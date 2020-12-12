@@ -31,8 +31,11 @@
         $row=$result->fetch_assoc();
         ?>
         <label for="inputEmail4">Doctor ID</label>
-        <input type="text" name="d_id" readonly class="form-control" value=<?php if (empty($row['d_id'])){ echo 0;}
-        else {echo $row['d_id']+1; }?>>
+        <input type="text" name="d_id" readonly class="form-control" value=<?php 
+        if ($id>0){echo $id;}
+        else if (empty($row['d_id'])){ echo 0;}
+        else {echo $row['d_id']+1; }
+        ?>>
       </div>
     </div>
     <div class="form-row">
@@ -47,6 +50,7 @@
     </div>
     <?php if ($update):    ?>
     <button type="submit" name="update" class="btn btn-warning">Update</button>
+    <button type="submit" name="cancel" class="btn btn-dark">Cancel</button>
     <?php else:?>
     <button type="submit" name="add" class="btn btn-primary">Add</button>
     <?php endif; ?>

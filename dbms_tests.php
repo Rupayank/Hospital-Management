@@ -6,7 +6,6 @@
 </head>
 <body>
 <?php require 'config.php' ?>
-
 <?php require_once 'test.php';?>
 <?php
   if(isset($_SESSION['message'])):  ?>
@@ -18,6 +17,7 @@
     ?>
   </div>
 <?php endif ?>
+
 <div class="container col-6 mt-5">
   <form action="test.php" method="post">
   <input type="hidden" name="id" value="<?php echo $id; ?>">
@@ -29,8 +29,12 @@
         $row=$result->fetch_assoc();
         ?>
         <label for="inputEmail4">Test ID</label>
-        <input type="text" name="t_id" readonly class="form-control" value=<?php if (empty($row['t_id'])){ echo 0;}
-        else {echo $row['t_id']+1; }?>>
+        <input type="text" name="t_id" readonly class="form-control" value=<?php 
+        if ($id>0){echo $id;}
+        else if (empty($row['t_id'])){ echo 0;}
+        else {echo $row['t_id']+1; }
+        ?>>
+        
       </div>
     </div>
     <div class="form-row">
@@ -55,6 +59,7 @@
     </div>
     <?php if ($update):    ?>
     <button type="submit" name="update" class="btn btn-warning">Update</button>
+    <button type="submit" name="cancel" class="btn btn-dark">Cancel</button>
     <?php else:?>
     <button type="submit" name="add" class="btn btn-primary">Add</button>
     <?php endif; ?>

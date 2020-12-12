@@ -23,9 +23,9 @@
       <li class="nav-item">
         <a class="nav-link" href="dbms_doctor.php">Doctors</a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" href="dbms_billing.php">Billing</a>
-      </li>
+      </li> -->
     </ul>
     <ul class="navbar-nav my-2 my-lg-0">
       <li class="nav-item nav-link mr-2">Hi <?php echo ucwords($_SESSION['user']);?></li>
@@ -59,8 +59,11 @@
       $row=$result->fetch_assoc();
       ?>
         <label for="inputEmail4">Patient ID</label>
-        <input type="text" name="pid" readonly class="form-control" value=<?php if (empty($row['pid'])){ echo 0;}
-        else {echo $row['pid']+1; }?>>
+        <input type="text" name="pid" readonly class="form-control" value=<?php 
+        if ($id>0){echo $id;}
+        else if (empty($row['pid'])){ echo 0;}
+        else {echo $row['pid']+1; }
+        ?>>
       </div>
     </div>
       <div class="form-row">
@@ -95,6 +98,7 @@
 
     <?php if ($update):    ?>
     <button type="submit" name="update" class="btn btn-warning">Update</button>
+    <button type="submit" name="cancel" class="btn btn-dark">Cancel</button>
     <?php else:?>
     <button type="submit" name="register" class="btn btn-primary">Register</button>
     <?php endif; ?>
